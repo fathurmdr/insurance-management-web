@@ -1,0 +1,42 @@
+<form
+  action="{{ route('bulk-member-registration') }}"
+  method="POST"
+  class="mx-auto max-w-md rounded-lg bg-white p-4 shadow"
+>
+  @csrf
+  <div class="mb-4">
+    <label for="csv_file" class="text-gray-700 block font-medium"
+      >Upload CSV File:</label
+    >
+    <input
+      type="file"
+      name="csv_file"
+      id="csv_file"
+      class="mt-2 w-full rounded-lg border p-2"
+      accept=".csv"
+      required
+    />
+  </div>
+  <div class="mb-4">
+    <label for="record_mode" class="text-gray-700 block font-medium"
+      >Record Mode:</label
+    >
+    <select
+      name="record_mode"
+      id="record_mode"
+      class="mt-2 w-full rounded-lg border p-2"
+      required
+    >
+      <option value="A1">Insert Data</option>
+      <option value="A2">Update Data Personal</option>
+      <option value="A3">Update Data Periode Kepesertaan Member</option>
+      <option value="A4">Terminated/Disable Member</option>
+    </select>
+  </div>
+  <button
+    type="submit"
+    class="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+  >
+    Submit
+  </button>
+</form>
