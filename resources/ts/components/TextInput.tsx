@@ -30,21 +30,28 @@ function TextInput({
           {label}
         </label>
       )}
-      <div
-        className={`flex w-full flex-row-reverse items-center overflow-hidden rounded border-[1.5px] border-stroke bg-transparent font-medium outline-none transition focus-within:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus-within:border-primary ${className}`}
-      >
+      {prefix ? (
+        <div
+          className={`flex w-full items-center overflow-hidden rounded border-[1.5px] border-stroke bg-transparent px-4 py-2 font-medium outline-none transition focus-within:border-primary active:border-primary disabled:cursor-default dark:border-form-strokedark dark:bg-form-input dark:focus-within:border-primary ${className} ${
+            props.disabled && 'bg-whiter'
+          }`}
+        >
+          <span className="mx-1 peer-disabled:bg-whiter">{prefix}</span>
+          <input
+            {...props}
+            id={id}
+            className={`peer w-full rounded bg-transparent p-1 font-medium outline-none transition disabled:cursor-default disabled:bg-whiter ${className}`}
+            ref={input}
+          />
+        </div>
+      ) : (
         <input
           {...props}
           id={id}
-          className={`peer w-full rounded bg-transparent px-5 py-3 font-medium outline-none transition disabled:cursor-default disabled:bg-whiter ${className}`}
+          className={`w-full overflow-hidden rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${className}`}
           ref={input}
         />
-        {prefix && (
-          <span className="z-10 -mr-3 py-3 pl-4 peer-disabled:bg-whiter">
-            {prefix}
-          </span>
-        )}
-      </div>
+      )}
     </div>
   );
 }

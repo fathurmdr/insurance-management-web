@@ -75,7 +75,7 @@ class ClaimController extends Controller
       ->findOrFail($request->id);
 
     if ($claim->claim_status !== 'approved') {
-      return response()->json(['error' => 'claim status not allowed'], 400);
+      abort(400, 'Bad Request');
     }
 
     $data = [
